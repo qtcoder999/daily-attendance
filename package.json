@@ -6,13 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "npm i -g nodemon",
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chromedriver": "^2.42.1",
+    "chromedriver": "^2.43.1",
     "nodemailer": "^4.6.8",
     "selenium-webdriver": "^4.0.0-alpha.1"
   }
