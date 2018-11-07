@@ -2,8 +2,11 @@
   "name": "NodePractice1",
   "version": "1.0.0",
   "description": "",
-  "username":"VBS1952",
-  "password":"Password1",
+  "username": "VBS1952",
+  "password": "Password1",
+  "startDate": "11/06/2018",
+  "hours": "8.5",
+  "endDate": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
