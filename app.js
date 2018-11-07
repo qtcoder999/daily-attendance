@@ -1,15 +1,23 @@
 require('chromedriver');
-var webdriver = require('selenium-webdriver');
-const { Builder, By, Key, until } = require('selenium-webdriver');
-
 var pjson = require('./package.json');
-//console.log(pjson.username);
-//console.log(pjson.password);
+var moment = require('moment');
+var webdriver = require('selenium-webdriver');
+
+const {
+  Builder,
+  By,
+  Key,
+  until
+} = require('selenium-webdriver');
+
+// console.log(pjson.username.trim());
+// console.log(pjson.password.trim());
+// console.log(pjson.startDate.trim());
+// console.log(pjson.endDate.trim());
 
 if (process.env.NODE_ENV == 'development') {
   DevMain();
-}
-else {
+} else {
   Main();
 }
 //NODE_ENV="development" node ./app.js
@@ -86,14 +94,25 @@ async function DevAddNewTimesheet(driver) {
 
   //!imp
 
-  await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).sendKeys(pjson.startDate.trim());
-  await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).clear();
-  await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).sendKeys(pjson.hours.trim());
-  await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
+  var a = moment(pjson.startDate.trim());
+  var b = moment(pjson.endDate.trim());
+
+  // for (var m = moment(a); m.diff(b, 'days') <= 0; m.add(1, 'days')) {
+  //   //weekend check
+  //   if (m.isoWeekday() !== 6 && m.isoWeekday() !== 7) {
+  //     console.log(m.format('MM/DD/YYYY'));
+  //     await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).sendKeys(String(m.format('MM/DD/YYYY')));
+  //   }
+  // }
   
+  //await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).sendKeys(pjson.startDate.trim());
+  // await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).clear();
+  // await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).sendKeys(pjson.hours.trim());
+  //await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
+
   //Publish button click
   //await driver.findElement(By.id('cphMaster_btnPublish')).click();
-  
+
   //await driver.switchTo().alert().accept();
 
 }
