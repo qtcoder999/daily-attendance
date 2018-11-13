@@ -57,16 +57,18 @@ async function DevMain() {
   try {
 
     //Opens and login into timesheet
-    //await DevLogin(driver);
+    await DevLogin(driver);
     await DevAddNewTimesheet(driver);
 
   } finally {
-    await driver.sleep(10000);
-    await driver.quit();
+    //await driver.sleep(10000);
+    //await driver.quit();
   }
 };
 async function DevLogin(driver) {
-  await driver.get('http://127.0.0.1:8887/Vserv%20Timesheet%20Login.html');
+  //await driver.get('http://127.0.0.1:8887/Vserv%20Timesheet%20Login.html');
+  await driver.get('http://182.76.79.200/Empower/Login.aspx');
+
   //await driver.findElement(By.name('q')).sendKeys('webdriver', Key.RETURN);
   await driver.wait(until.titleIs('Vserv Timesheet Login'), 1000);
   await driver.findElement(By.id('txtUserID')).sendKeys(pjson.username.trim());
@@ -74,7 +76,8 @@ async function DevLogin(driver) {
   await driver.findElement(By.id('btnUserLogin')).click();
 }
 async function DevAddNewTimesheet(driver) {
-  await driver.get('http://127.0.0.1:8887/Vserv%20Timesheet%20Application2.html');
+  // await driver.get('http://127.0.0.1:8887/Vserv%20Timesheet%20Application2.html');
+  await driver.get('http://182.76.79.200/Empower/AddNewTimeSheetEntry.aspx');
 
   //!imp
 
@@ -85,7 +88,9 @@ async function DevAddNewTimesheet(driver) {
   // var elem = await driver.findElement(By.id("34"));
   // await actions.move({ duration: 5000, origin: elem, x: 0, y: 0 }).perform();
 
-  // await driver.findElement(By.id("34")).click();
+  await driver.findElement(By.id('cphMaster_btnAddNewTimeSheetEntry')).click();
+
+  //await driver.findElement(By.id("34")).click();
 
   //!imp
 
@@ -99,14 +104,15 @@ async function DevAddNewTimesheet(driver) {
 
       //Select project
       await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlProjects_0 > option:nth-child(4)')).click();
-      await driver.sleep(500);
-
+      //await driver.sleep(500);
+      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlTaskPhase_0 > option:nth-child(2)')).click();
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).clear();
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).sendKeys(String(m.format('MM/DD/YYYY')));
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).clear();
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).sendKeys(pjson.hours.trim());
-      await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
-      //await driver.findElement(By.id('cphMaster_btnAddNewTimeSheetEntry')).click();
+      await driver.findElement(By.id('cphMaster_lblAddNewTimeSheetEntry')).sendKeys('');
+      //await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
+
     }
   }
 
