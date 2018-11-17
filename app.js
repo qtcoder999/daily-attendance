@@ -111,7 +111,7 @@ async function DevAddNewTimesheet(driver) {
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).clear();
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).sendKeys(pjson.hours.trim());
       await driver.findElement(By.id('cphMaster_lblAddNewTimeSheetEntry')).sendKeys('');
-      //await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
+      await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
 
     }
   }
