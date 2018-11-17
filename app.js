@@ -15,11 +15,11 @@ const {
 // console.log(pjson.startDate.trim());
 // console.log(pjson.endDate.trim());
 
-if (process.env.NODE_ENV == 'development') {
+// if (process.env.NODE_ENV == 'development') {
   DevMain();
-} else {
-  Main();
-}
+// } else {
+//   Main();
+// }
 //NODE_ENV="development" node ./app.js
 
 async function Main() {
