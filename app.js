@@ -16,7 +16,7 @@ const {
 // console.log(pjson.endDate.trim());
 
 // if (process.env.NODE_ENV == 'development') {
-  DevMain();
+DevMain();
 // } else {
 //   Main();
 // }
@@ -110,15 +110,17 @@ async function DevAddNewTimesheet(driver) {
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).sendKeys(String(m.format('MM/DD/YYYY')));
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).clear();
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).sendKeys(pjson.hours.trim());
-      await driver.findElement(By.id('cphMaster_lblAddNewTimeSheetEntry')).sendKeys('');
+      //await driver.findElement(By.id('cphMaster_lblAddNewTimeSheetEntry')).sendKeys('');
       await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
 
     }
   }
+  
+  await driver.sleep(15000);
 
   //Publish button click
-  //await driver.findElement(By.id('cphMaster_btnPublish')).click();
-  //await driver.switchTo().alert().accept();
+  // await driver.findElement(By.id('cphMaster_btnPublish')).click();
+  // await driver.switchTo().alert().accept();
 
 }
 
