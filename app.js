@@ -119,8 +119,8 @@ async function DevAddNewTimesheet(driver) {
   await driver.sleep(15000);
 
   //Publish button click
-  // await driver.findElement(By.id('cphMaster_btnPublish')).click();
-  // await driver.switchTo().alert().accept();
+     await driver.findElement(By.id('cphMaster_btnPublish')).click();
+     await driver.switchTo().alert().accept();
 
 }
 
