@@ -39,7 +39,7 @@ async function Main() {
 
 
 async function login(driver) {
-  await driver.get('http://182.76.79.200/Empower/Login.aspx');
+  await driver.get('https://empower.intsof.com/Login.aspx');
   //await driver.findElement(By.name('q')).sendKeys('webdriver', Key.RETURN);
   await driver.wait(until.titleIs('Vserv Timesheet Login'), 1000);
   await driver.findElement(By.id('txtUserID')).sendKeys(pjson.username.trim());
@@ -67,7 +67,7 @@ async function DevMain() {
 };
 async function DevLogin(driver) {
   //await driver.get('http://127.0.0.1:8887/Vserv%20Timesheet%20Login.html');
-  await driver.get('http://182.76.79.200/Empower/Login.aspx');
+  await driver.get('https://empower.intsof.com/Login.aspx');
 
   //await driver.findElement(By.name('q')).sendKeys('webdriver', Key.RETURN);
   await driver.wait(until.titleIs('Vserv Timesheet Login'), 1000);
@@ -77,7 +77,7 @@ async function DevLogin(driver) {
 }
 async function DevAddNewTimesheet(driver) {
   // await driver.get('http://127.0.0.1:8887/Vserv%20Timesheet%20Application2.html');
-  await driver.get('http://182.76.79.200/Empower/AddNewTimeSheetEntry.aspx');
+  await driver.get('https://empower.intsof.com/AddNewTimeSheetEntry.aspx');
 
   //!imp
 
@@ -125,4 +125,4 @@ async function DevAddNewTimesheet(driver) {
 }
 
 //View timesheet - production
-//http://182.76.79.200/Empower/AddNewTimeSheetEntry.aspx
+//https://empower.intsof.com/AddNewTimeSheetEntry.aspx
