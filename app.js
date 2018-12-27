@@ -103,12 +103,13 @@ async function DevAddNewTimesheet(driver) {
       //console.log(m.format('MM/DD/YYYY'));
 
       //Select project
-      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlProjects_0 > option:nth-child(4)')).click();
-      //await driver.sleep(500);
+      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlProjects_0 > option:nth-child(5)')).click();
+      
       await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlTaskPhase_0 > option:nth-child(2)')).click();
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).clear();
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).sendKeys(String(m.format('MM/DD/YYYY')));
-      await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).clear();
+      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlPercentageCompletion_0 > option:nth-child(11)')).click();	  
+	  await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).clear();
       await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).sendKeys(pjson.hours.trim());
       //await driver.findElement(By.id('cphMaster_lblAddNewTimeSheetEntry')).sendKeys('');
       await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
@@ -116,9 +117,9 @@ async function DevAddNewTimesheet(driver) {
     }
   }
   
-  await driver.sleep(10000);
+	  await driver.sleep(10000);
 
-  //Publish button click
+	 //Publish button click
      await driver.findElement(By.id('cphMaster_btnPublish')).click();
      await driver.switchTo().alert().accept();
 
