@@ -88,7 +88,7 @@ async function DevAddNewTimesheet(driver) {
   // var elem = await driver.findElement(By.id("34"));
   // await actions.move({ duration: 5000, origin: elem, x: 0, y: 0 }).perform();
 
-  await driver.findElement(By.id('cphMaster_btnAddNewTimeSheetEntry')).click();
+  
 
   //await driver.findElement(By.id("34")).click();
 
@@ -96,32 +96,45 @@ async function DevAddNewTimesheet(driver) {
 
   var a = moment(pjson.startDate.trim());
   var b = moment(pjson.endDate.trim());
-
+  var i = 0;
   for (var m = moment(a); m.diff(b, 'days') <= 0; m.add(1, 'days')) {
-    //weekend check
+	
+    
+	//weekend check
     if (m.isoWeekday() !== 6 && m.isoWeekday() !== 7) {
-      //console.log(m.format('MM/DD/YYYY'));
+	  console.log(m);
+	  await driver.findElement(By.id('cphMaster_btnAddNewTimeSheetEntry')).click();
+	  //console.log(m.format('MM/DD/YYYY'));
 
       //Select project
-      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlProjects_0 > option:nth-child(5)')).click();
+      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlProjects_' + i + ' > option:nth-child(5)')).click();
       
-      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlTaskPhase_0 > option:nth-child(2)')).click();
-      await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).clear();
-      await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_0')).sendKeys(String(m.format('MM/DD/YYYY')));
-      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlPercentageCompletion_0 > option:nth-child(11)')).click();	  
-	  await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).clear();
-      await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_0')).sendKeys(pjson.hours.trim());
+      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlTaskPhase_' + i + ' > option:nth-child(2)')).click();
+	  
+      await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_' + i + '')).clear();
+	  
+      await driver.findElement(By.id('cphMaster_MyDataGrid_txtDate_' + i + '')).sendKeys(String(m.format('MM/DD/YYYY')));
+	  
+      await driver.findElement(By.css('#cphMaster_MyDataGrid_ddlPercentageCompletion_' + i + ' > option:nth-child(11)')).click();	  
+	  
+	  await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_' + i + '')).clear();
+		
+      await driver.findElement(By.id('cphMaster_MyDataGrid_txtHours_' + i + '')).sendKeys(pjson.hours.trim());
+	  
       //await driver.findElement(By.id('cphMaster_lblAddNewTimeSheetEntry')).sendKeys('');
-      await driver.findElement(By.xpath('//*[@id="cphMaster_MyDataGrid"]/tbody/tr[2]/td[1]/a[1]')).click();
-
+	  
+      await driver.findElement(By.css('#cphMaster_MyDataGrid > tbody > tr:nth-child('+ (i + 2) +') > td > a')).click();
+	  
+	  i++;
+	  
     }
   }
   
-	  await driver.sleep(10000);
+	  await driver.sleep(3000);
 
-	 //Publish button click
-     await driver.findElement(By.id('cphMaster_btnPublish')).click();
-     await driver.switchTo().alert().accept();
+	  //Publish button click
+      await driver.findElement(By.id('cphMaster_btnPublish')).click();
+      await driver.switchTo().alert().accept(); 
 
 }
 
